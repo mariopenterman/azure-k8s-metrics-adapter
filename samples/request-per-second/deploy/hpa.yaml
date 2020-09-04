@@ -4,7 +4,7 @@ metadata:
   name: rps-sample
 spec:
   scaleTargetRef:
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
     name: rps-sample
   minReplicas: 2

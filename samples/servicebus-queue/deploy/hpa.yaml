@@ -4,7 +4,7 @@ metadata:
  name: consumer-scaler
 spec:
  scaleTargetRef:
-   apiVersion: extensions/v1beta1
+   apiVersion: apps/v1
    kind: Deployment
    name: consumer
  minReplicas: 1

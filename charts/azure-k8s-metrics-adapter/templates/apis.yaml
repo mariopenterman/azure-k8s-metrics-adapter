@@ -1,4 +1,4 @@
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   # name must match the spec fields below, and be in the form: <plural>.<group>
@@ -6,7 +6,39 @@ metadata:
 spec:
   # group name to use for REST API: /apis/<group>/<version>
   group: azure.com
-  version: v1alpha2
+  versions: 
+    - name: v1alpha2
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                type:
+                  type: string
+                azure:
+                  type: object
+                  properties:                     
+                    resourceGroup:
+                      type: string
+                    resourceName:
+                      type: string
+                    resourceProviderNamespace:
+                      type: string
+                    resourceType:
+                      type: string
+                metric:
+                  type: object
+                  properties: 
+                    metricName: 
+                      type: string
+                    aggregation: 
+                      type: string
+                    filter: 
+                      type: string
   scope: Namespaced
   names:
     # plural name to be used in the URL: /apis/<group>/<version>/<plural>
@@ -15,9 +47,9 @@ spec:
     kind: ExternalMetric
     shortNames:
     - aem
-  #validation: #Turn on validation in future
+    
 ---
-apiVersion: apiextensions.k8s.io/v1beta1
+apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   # name must match the spec fields below, and be in the form: <plural>.<group>
@@ -25,7 +57,26 @@ metadata:
 spec:
   # group name to use for REST API: /apis/<group>/<version>
   group: azure.com
-  version: v1alpha2
+  versions: 
+    - name: v1alpha2
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                metric:
+                  type: object
+                  properties:
+                    metricName:
+                      type: string
+                    applicationID:
+                      type: string
+                    query:
+                      type: string
   scope: Namespaced
   names:
     # plural name to be used in the URL: /apis/<group>/<version>/<plural>
@@ -34,4 +85,3 @@ spec:
     kind: CustomMetric
     shortNames:
     - acm
-  #validation: #Turn on validation in future
